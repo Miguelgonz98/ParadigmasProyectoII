@@ -1,0 +1,15 @@
+14/11: Ponerse al día con Prolog alv
+15/11: Ponerse al día con Prolog alv / Trabajo de Investigación
+16/11: Ver evaluación de polinomios
+17/11: Ver evaluación de polinomios
+18/11: Derivación de polinomios
+19/11: Derivación de polinomios
+20/11: Implementación del método de Newton-Raphson
+21/11: Implementación del método de Newton-Raphson
+22/11: Evaluación de la condición de finalización por convergencia
+23/11: Evaluación de la condición de finalización por convergencia
+24/11: Finalización de la evaluación cuando no exista convergencia
+25/11: Finalización de la evaluación cuando no exista convergencia
+26/11: Ejecución de Pruebas
+
+Opcional: Cálculo de raíces complejas del polinomio
