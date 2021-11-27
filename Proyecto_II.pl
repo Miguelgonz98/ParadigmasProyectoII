@@ -39,18 +39,40 @@ sub_evaluar(_X,[],_Potencia,Acum,Acum).
   %Regresa: Una lista, representando al polinomio lineal derivado.
     %P: Lista que representa el polinomio lineal.
     %D: Resultado.
-derivar([_|Xr],D) :- sub_derivar(Xr,1,[],D).
+derivar([_|T],D) :- sub_derivar(T,1,[],D).
     sub_derivar([],_,D,D).
-    sub_derivar([X|Xr],A,B,D) :-
-    	X1 is X*A,
-    	T1 = [X1],
-    	append(B,T1,R),
-    	A1 is A+1,
-    	sub_derivar(Xr,A1,R,D).
+    sub_derivar([X|T],A,B,D) :-
+        X1 is X*A,
+        T1 = [X1],
+        append(B,T1,R),
+        A1 is A+1,
+        sub_derivar(T,A1,R,D).
 % ===============================================
 %Predicado para calcular las raices de un polinomio lineal.
   %Recibe:
     %X0:la aproximación inicial de la raíz
     %P:los coeficientes del polinomio por evalua
     %E:error máximo (diferencia máxima entre dos aproximaciones sucesivas)
-    %R:La raíz calculada para el polinomio.
+    %R:La raíz calculada para el polinomio
+
+calcular(X0,P,E,D):-
+sub_calcular(X0,P,E,0).
+sub_calcular(X0,P,E,D) :-
+        evaluar(X0,P,F),
+        derivar(P,FPrime),
+        evaluar(X0, FPrime, FPrimDer),
+        H is (F/FPrimDer),
+        ( abs(H) < E
+        ->
+          D is X0
+        ;
+          NewX0 is X0-H,
+          sub_calcular(NewX0,P,E,D)
+        ).
+sub_calcular(_X0,_P,_E,D).
+%def recNewtonRaphson(x, tolerance):
+%    h = func(x) / derivFunc(x)
+%    if abs(h) < tolerance:
+%        return x
+%    else:
+%        return recNewtonRaphson(x-h, tolerance)
