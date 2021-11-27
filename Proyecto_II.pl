@@ -55,9 +55,7 @@ derivar([_|T],D) :- sub_derivar(T,1,[],D).
     %E:error máximo (diferencia máxima entre dos aproximaciones sucesivas)
     %R:La raíz calculada para el polinomio
 
-calcular(X0,P,E,D):-
-sub_calcular(X0,P,E,0).
-sub_calcular(X0,P,E,D) :-
+calcular(X0,P,E,D) :-
         evaluar(X0,P,F),
         derivar(P,FPrime),
         evaluar(X0, FPrime, FPrimDer),
@@ -67,12 +65,5 @@ sub_calcular(X0,P,E,D) :-
           D is X0
         ;
           NewX0 is X0-H,
-          sub_calcular(NewX0,P,E,D)
+          calcular(NewX0,P,E,D)
         ).
-sub_calcular(_X0,_P,_E,D).
-%def recNewtonRaphson(x, tolerance):
-%    h = func(x) / derivFunc(x)
-%    if abs(h) < tolerance:
-%        return x
-%    else:
-%        return recNewtonRaphson(x-h, tolerance)
