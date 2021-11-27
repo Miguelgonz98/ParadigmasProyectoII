@@ -1,0 +1,5 @@
+int x = 1.5;
+int resultado = 0;
+for (int i = 0; i< polinomio.lenght(); i++){
+	resultado += polinomio(i) * pow(x,i):
+}
