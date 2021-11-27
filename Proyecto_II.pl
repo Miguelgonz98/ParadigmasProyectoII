@@ -27,13 +27,13 @@
   %D = -15.125.
 %i: indice: inicia en 0
 %acumulador inicia en 0
-evaluar(P,A,R) :-
-accEval(P,A,0,0,R).
-accEval(([H|T]),A,Pow,Accres,R) :-
-        Rnew is (Accres+H*(A**Pow)),
-        Pownew is Pow+1,
-        accEval(T,A,Pownew,Rnew,R).  % *See below
-accEval([],_A,_Pow,Accres,Accres).
+evaluar(X,P,D) :-
+sub_evaluar(X,P,0,0,D).
+sub_evaluar(X,([H|T]),Potencia,Acum,D) :-
+        R is (Acum+H*(X**Potencia)),
+        I is Potencia+1,
+        sub_evaluar(X,T,I,R,D).
+sub_evaluar(_X,[],_Potencia,Acum,Acum).
 
 % ===============================================
 %Predicado para derivar un polinomio lineal
