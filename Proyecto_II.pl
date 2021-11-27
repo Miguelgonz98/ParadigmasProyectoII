@@ -16,7 +16,7 @@
 % ===============================================
 %Predicado para evaluar un polinomio lineal
   %Recibe:
-    %V: Valor inicial de la secuencia.
+    %X: Valor inicial de la secuencia.
     %P: Lista que representa el polinomio lineal.
     %D: Resultado.
   %Regresa: La suma del valor de sus exponentes multiplicados y .
@@ -25,8 +25,6 @@
   %Ejemplo de la consulta:
   %?- evaluar(1.5, [-32, 0, 6, 1], D).
   %D = -15.125.
-%i: indice: inicia en 0
-%acumulador inicia en 0
 evaluar(X,P,D) :-
 sub_evaluar(X,P,0,0,D).
 sub_evaluar(X,([H|T]),Potencia,Acum,D) :-
@@ -34,12 +32,21 @@ sub_evaluar(X,([H|T]),Potencia,Acum,D) :-
         I is Potencia+1,
         sub_evaluar(X,T,I,R,D).
 sub_evaluar(_X,[],_Potencia,Acum,Acum).
-
 % ===============================================
 %Predicado para derivar un polinomio lineal
   %Recibe una lista, representando al polinomio
   %Ejemplo: [-32, 0, 6, 1] representa (-32 * X^0 + 0*X^1 + 6*X^2 + 1*X^3)
   %Regresa: Una lista, representando al polinomio lineal derivado.
+    %P: Lista que representa el polinomio lineal.
+    %D: Resultado.
+derivar([_|Xr],D) :- sub_derivar(Xr,1,[],D).
+    sub_derivar([],_,D,D).
+    sub_derivar([X|Xr],A,B,D) :-
+    	X1 is X*A,
+    	T1 = [X1],
+    	append(B,T1,R),
+    	A1 is A+1,
+    	sub_derivar(Xr,A1,R,D).
 % ===============================================
 %Predicado para calcular las raices de un polinomio lineal.
   %Recibe:
